@@ -1,13 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>¡Hola, Coder!</Text>
-      <StatusBar style="auto" />
+      <View style={styles.inputbutton}>
+        <TextInput style={styles.input} placeholder='Buscar' />
+        <Button title='+' />
+      </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -17,4 +18,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+  inputbutton: {
+    flexDirection: "row",
+  },
+  input: {
+    borderWidth: 2,
+    padding: 10,
+    marginBottom: 5,
+    width: 200,
+  },
+})
