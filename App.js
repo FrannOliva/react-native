@@ -1,4 +1,5 @@
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import ModalDelete from './src/components/ModalDelete';
 
 export default function App() {
   return (
@@ -7,6 +8,7 @@ export default function App() {
         <TextInput style={styles.input} placeholder='Buscar' />
         <Button title='+' />
       </View>
+      <ModalDelete />
     </View>
   )
 }
