@@ -1,23 +1,34 @@
-import { Modal, StyleSheet, View } from 'react-native'
-const ModalDelete = ({ onDelete, modalVisible }) => {
+import { Modal, StyleSheet, View, Text, Button } from 'react-native'
+const ModalDelete = ({ visible, product, onDelete, onModal }) => {
 
   return (
-    <Modal visible={modalVisible}>
-      <View>
-        <View>
-          <Text>¿Confirmar borrado?</Text>
-          <Button title="Confirmar" onPress={handlerDeleteProduct}></Button>
-          <Button title="Volver atrás" onPress={() => { setModalVisible(false) }}></Button>
+    <Modal visible={visible}>
+      <View style={styles.container}>
+        <View style={styles.content}>
+          <Text style={styles.text}>¿Confirmar borrado de {product.title}?</Text>
+          <Button title="Confirmar" onPress={onDelete}></Button>
+          <Button title="Volver atrás" onPress={() => onModal(false)}></Button>
         </View>
       </View>
-    </Modal>
+    </Modal >
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: white,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  content: {
+    width: "80%",
+    borderWidth: 2,
+    padding: 10,
+    gap: 10
+  },
+  text: {
+    textAlign: "center"
   }
 })
+
 export default ModalDelete

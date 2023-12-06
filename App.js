@@ -1,14 +1,45 @@
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { useState } from "react";
 import ModalDelete from './src/components/ModalDelete';
+import AddProduct from './src/components/AddProduct';
+import ProductsList from './src/components/ProductsList';
 
 export default function App() {
+  const [newTitle, setNewTitle] = useState("")
+  const [newPrice, setNewPrice] = useState("")
+  const [products, setProducts] = useState([])
+  const [productSelected, setProductSelected] = useState({})
+  const [modalVisible, setModalVisible] = useState(false)
+
+  const handlerAddProduct = () => {
+    const generarId = () => {
+      return Math.random().toString(30).substring(2)
+    }
+    const newProduct = {
+      id: generarId(),
+      title: newTitle,
+      price: newPrice
+    }
+
+    setProducts(current => [...current, newProduct])
+    setNewTitle("")
+    setNewPrice("")
+  }
+
+  const handlerModal = (item) => {
+    setProductSelected(item)
+    setModalVisible(true)
+  }
+  const handlerDeleteProduct = () => {
+    setProducts(current => current.filter(product => product.id !== productSelected.id))
+    setModalVisible(false)
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.inputbutton}>
-        <TextInput style={styles.input} placeholder='Buscar' />
-        <Button title='+' />
-      </View>
-      <ModalDelete />
+      <AddProduct valueTitle={newTitle} valuePrice={newPrice} onChangeTitle={setNewTitle} onChangePrice={setNewPrice} addProduct={handlerAddProduct} />
+      <ProductsList products={products} onModal={handlerModal} />
+      <ModalDelete visible={modalVisible} product={productSelected} onModal={setModalVisible} onDelete={handlerDeleteProduct} />
     </View>
   )
 }
@@ -16,17 +47,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputbutton: {
-    flexDirection: "row",
-  },
-  input: {
-    borderWidth: 2,
-    padding: 10,
-    marginBottom: 5,
-    width: 200,
+    justifyContent: 'start',
+    marginTop: 50,
   },
 })
