@@ -18,16 +18,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: "#14213d"
   },
   content: {
     width: "80%",
     borderWidth: 2,
     padding: 10,
-    gap: 10
+    gap: 10,
+    borderColor: "#fca311",
   },
   text: {
-    textAlign: "center"
+    textAlign: "center",
+    color: "#fff",
   }
 })
 

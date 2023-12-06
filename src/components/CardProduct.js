@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Button } from 'react-native'
 const CardProduct = ({ item, onModal }) => {
   return (
     <View style={styles.productContainer}>
-      <Text>{item.title}</Text>
-      <Text>${item.price}</Text>
+      <Text style={styles.texto}>{item.title}</Text>
+      <Text style={styles.texto}>${item.price}</Text>
       <Button title="-" onPress={() => onModal(item)} />
     </View>
   )
@@ -19,6 +19,10 @@ const styles = StyleSheet.create({
     margin: 10,
     justifyContent: "space-around",
     alignItems: "center",
-    borderWidth: 4
+    borderWidth: 3,
+    borderColor: "#fca311",
+  },
+  texto: {
+    color: "#fff"
   }
 })
